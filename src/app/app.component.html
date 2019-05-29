@@ -2,7 +2,8 @@
   <div class="send">
     <label>Enter a number(n) to get (n) number of (n) words</label><br>
     <input type="number" min="1" [(ngModel)]="n_number" name="n_number"><br>
-    <button class="sendButton button" (click)="send()">Send</button>
+    <button class="sendButton button" (click)="send()">Send</button><br>
+    <span style="color: #ad0909">{{this.error}}</span>
   </div>
 </div>
 <div class="getWords">

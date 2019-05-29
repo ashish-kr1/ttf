@@ -7,14 +7,24 @@ import { services } from './service';
 })
 export class AppComponent {
   n_number: number = 1;
-  words:any;
-  constructor(private services:services) { }
+  words: any;
+  error: any;
+  constructor(private services: services) { }
   ngOnInit() {
 
   }
   send() {
-    this.services.send(this.n_number).subscribe(data=>{
-      this.words=data;
-    },err=>console.log("error",err));
+    this.words = [];
+    if (this.n_number < 0) {
+      this.error = "Number should be positive"
+    }else if(this.n_number==0){
+      this.error="Please enter number greater than 0"
+    }
+    else {
+      this.error="";
+      this.services.send(this.n_number).subscribe(data => {
+        this.words = data;
+      }, err => this.error=err.error.message);
+    }
   }
 }
